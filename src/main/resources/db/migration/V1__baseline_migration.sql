@@ -23,6 +23,27 @@ CREATE TABLE train_type
     CONSTRAINT pk_train_type PRIMARY KEY (id)
 );
 
+INSERT INTO company (id, title, small_title)
+VALUES
+    (1, 'Дирекция скоростного сообщения', 'ДОСС'),
+    (2, 'Федеральная пассажирская компания', 'ФПК'),
+    (3, 'Гранд Сервис Экспресс', 'ГСЭ');
+
+INSERT INTO train_type (id, title)
+VALUES
+    (1, 'Сапсан'),
+    (2, 'Ласточка'),
+    (3, 'Стриж'),
+    (4, 'Премиум'),
+    (5, 'Двухэтажный'),
+    (6, 'Гранд Экспресс');
+
+INSERT INTO train (id, number, year, train_type_id, company_id)
+VALUES
+    (1, 'С15', 2015, 1, 1),
+    (2, 'П8', 2010, 4, 2),
+    (3, 'Г92', 2018, 6, 3);
+
 ALTER TABLE train
     ADD CONSTRAINT FK_TRAIN_ON_COMPANY FOREIGN KEY (company_id) REFERENCES company (id);
 
