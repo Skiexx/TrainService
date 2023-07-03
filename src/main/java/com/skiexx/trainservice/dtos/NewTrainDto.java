@@ -4,6 +4,7 @@ import com.skiexx.trainservice.repositories.CompanyRepository;
 import com.skiexx.trainservice.repositories.TrainTypeRepository;
 import com.skiexx.trainservice.validators.ForeignKeyExists;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;
 import lombok.Value;
 
@@ -14,6 +15,8 @@ import java.io.Serializable;
  */
 @Value
 public class NewTrainDto implements Serializable {
+    @Null
+    Long id;
     @NotNull
     @Size(max = 5)
     String number;

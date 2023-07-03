@@ -19,7 +19,7 @@ public class TrainType {
     private Long id;
 
     @Size(max = 30)
-    @Column(name = "title", length = 30)
+    @Column(name = "title", length = 30, nullable = false)
     private String title;
 
     @OneToMany(mappedBy = "trainType", orphanRemoval = true)

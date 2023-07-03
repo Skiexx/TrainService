@@ -18,16 +18,15 @@ public class Company {
     @Column(name = "id", nullable = false)
     private Long id;
 
-
-    @OneToMany(mappedBy = "company", orphanRemoval = true)
-    private Set<Train> trains = new LinkedHashSet<>();
-
     @Size(max = 50)
-    @Column(name = "title", length = 50)
+    @Column(name = "title", length = 50, nullable = false)
     private String title;
 
     @Size(max = 10)
-    @Column(name = "small_title", length = 10)
+    @Column(name = "small_title", length = 10, nullable = false)
     private String smallTitle;
+
+    @OneToMany(mappedBy = "company", orphanRemoval = true)
+    private Set<Train> trains = new LinkedHashSet<>();
 
 }
