@@ -82,5 +82,17 @@ public class GlobalExceptionHandler {
         }
         return ex.getMessage();
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> handleIllegalArgumentException(IllegalArgumentException ex) {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("path", request.getRequestURI());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("message", "Invalid argument");
+        response.put("error", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
 }
 

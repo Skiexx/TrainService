@@ -14,24 +14,20 @@ import java.io.Serializable;
  * DTO for {@link com.skiexx.trainservice.entities.Train}
  */
 @Value
-public class NewTrainDto implements Serializable {
+public class UpdateTrainDto implements Serializable {
     @Null
     Long id;
-    @NotNull
     @Size(max = 5)
     String number;
-    @NotNull
     Integer year;
-    @NotNull()
     @ForeignKeyExists(
-        repository = CompanyRepository.class,
-        message = "Company with that id doesnt exists"
+            repository = CompanyRepository.class,
+            message = "Company with that id doesnt exists"
     )
     Long companyId;
-    @NotNull()
     @ForeignKeyExists(
-        repository = TrainTypeRepository.class,
-        message = "Train type with that id doesnt exists"
+            repository = TrainTypeRepository.class,
+            message = "Train type with that id doesnt exists"
     )
     Long trainTypeId;
 }

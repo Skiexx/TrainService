@@ -10,7 +10,10 @@ import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 import org.hibernate.validator.constraints.Length;
 
+import java.sql.Timestamp;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,20 +28,25 @@ public class Train {
     private Long id;
 
     @Size(max = 5)
-    @Column(name = "number", length = 5)
+    @Column(name = "number", length = 5, nullable = false)
     private String number;
 
-    @Column(name = "year")
+    @Column(name = "year", nullable = false)
     private Integer year;
 
-
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "train_type_id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "train_type_id", nullable = false)
     private TrainType trainType;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "company_id", nullable = false)
     private Company company;
+
+    @Column(name = "circulation_stopped")
+    private Timestamp circulationStopped;
+
+    @OneToMany(mappedBy = "train", orphanRemoval = true)
+    private Set<Route> routes = new LinkedHashSet<>();
 
     @Override
     public final boolean equals(Object o) {

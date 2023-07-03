@@ -1,16 +1,18 @@
 package com.skiexx.trainservice.dtos;
 
-import jakarta.validation.constraints.Max;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Size;
 import lombok.Value;
-import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Optional;
 
 /**
  * DTO for {@link com.skiexx.trainservice.entities.Train}
  */
 @Value
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TrainDto implements Serializable {
     Long id;
     @Size(max = 5)
@@ -18,4 +20,5 @@ public class TrainDto implements Serializable {
     Integer year;
     TrainTypeDto trainType;
     CompanyDto company;
+    Timestamp circulationStopped;
 }

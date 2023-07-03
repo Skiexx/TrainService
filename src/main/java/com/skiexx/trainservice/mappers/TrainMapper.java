@@ -8,6 +8,7 @@ import org.mapstruct.*;
 public interface TrainMapper {
     Train toEntity(TrainDto trainDto);
 
+    @Mapping(target = "circulationStopped", source = "circulationStopped", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     TrainDto toDto(Train train);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
